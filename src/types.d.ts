@@ -1,9 +1,16 @@
-import type { ClientOptions } from 'graphql-ws'
-import type { HttpOptions, DefaultOptions, InMemoryCacheConfig } from '@apollo/client'
-import type { CookieOptions } from 'nuxt/app'
-export type { ErrorResponse } from '@apollo/client/link/error'
+import type { ClientOptions } from "graphql-ws";
+import type {
+  HttpOptions,
+  DefaultOptions,
+  InMemoryCacheConfig,
+} from "@apollo/client";
+import type { CookieOptions } from "nuxt/app";
+export type { ErrorResponse } from "@apollo/client/link/error";
 
-type CookieAttributes = Omit< CookieOptions, 'encode' | 'decode' | 'expires' | 'default'>;
+type CookieAttributes = Omit<
+  CookieOptions,
+  "encode" | "decode" | "expires" | "default"
+>;
 
 export type ClientConfig = {
   /**
@@ -23,13 +30,13 @@ export type ClientConfig = {
    * See https://www.apollographql.com/docs/link/links/http.html#options
    * @type {HttpOptions}
    **/
-  httpLinkOptions?: Omit<HttpOptions, 'uri'>;
+  httpLinkOptions?: Omit<HttpOptions, "uri">;
 
   /**
    * Provide additional configuration for the `GraphQLWsLink`.
    * See https://github.com/enisdenjo/graphql-ws/blob/master/docs/interfaces/client.ClientOptions.md
    **/
-  wsLinkOptions?: Omit<ClientOptions, 'url' | 'connectionParams'>;
+  wsLinkOptions?: Omit<ClientOptions, "url" | "connectionParams">;
 
   /**
    * Specify a websocket endpoint to be used for subscriptions.
@@ -80,7 +87,7 @@ export type ClientConfig = {
    * @type {string}
    * @default "cookie"
    **/
-  tokenStorage?: 'cookie' | 'localStorage';
+  tokenStorage?: "cookie" | "localStorage";
 
   /**
    * Specify the Authentication scheme.
@@ -100,6 +107,13 @@ export type ClientConfig = {
    * Configuration for the auth cookie.
    **/
   cookieAttributes?: CookieAttributes;
+
+  /**
+   * The fetchPolicy to use for this client's queries.
+   * See https://www.apollographql.com/docs/react/data/queries/#supported-fetch-policies
+   * @type {string}
+   **/
+  fetchPolicy?: string;
 };
 
 export interface NuxtApolloConfig<T = false> {
@@ -113,7 +127,10 @@ export interface NuxtApolloConfig<T = false> {
   /**
    * Configuration of the Apollo clients.
    **/
-  clients?: Record< string, T extends false ? string | ClientConfig : ClientConfig >;
+  clients?: Record<
+    string,
+    T extends false ? string | ClientConfig : ClientConfig
+  >;
 
   /**
    * Default options to be applied to all Apollo clients.
@@ -149,7 +166,7 @@ export interface NuxtApolloConfig<T = false> {
    * @type {string}
    * @default "cookie"
    **/
-  tokenStorage?: 'cookie' | 'localStorage';
+  tokenStorage?: "cookie" | "localStorage";
 
   /**
    * Configuration for the auth cookie.
@@ -163,5 +180,5 @@ export interface NuxtApolloConfig<T = false> {
    * @type {boolean}
    * @default false
    */
-  clientAwareness?: boolean
+  clientAwareness?: boolean;
 }
